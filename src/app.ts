@@ -1,14 +1,24 @@
 import express from "express";
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
+import "dotenv/config";
+import router from "./routes/index";
+import errorHandler from "./middleware/errorHandler";
+
 const app = express();
 const prisma = new PrismaClient();
-const {port} = process.env;
+const { PORT } = process.env;
 
-app.listen(port,async ()=>{
+const prismaClient = new PrismaClient();
+export default prismaClient;
+
+app.use(express.json());
+app.use(router);
+app.use(errorHandler);
+app.listen(PORT, async () => {
     try {
         await prisma.$connect();
-        console.log(`App is running on Server https`);
+        console.log(`App is running on http://localhost:${PORT}`);
     } catch (error) {
-        console.error('Failed to connect to the database:', error);
+        console.error("Failed to connect to the database:", error);
     }
-})
+});

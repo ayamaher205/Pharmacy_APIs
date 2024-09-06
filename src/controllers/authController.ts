@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 import * as bcrypt from "bcrypt";
-import AuthenticationErr from "../errors/authentication";
+import AuthenticationErr from "../errors/authenticationError";
 import asyncWrapper from "../utils/asyncWrapper";
 import prismaClient from "../app";
 import DataBaseErr from "../errors/databaseError";
-import BadRequest from "../errors/badRequest";
+import BadRequest from "../errors/badRequestError";
 import Tokens from "../utils/auth";
 import NotFoundErr from "../errors/notFoundError";
 

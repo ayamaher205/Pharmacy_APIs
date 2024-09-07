@@ -7,6 +7,6 @@ import authorizeAdmin from "../middleware/authorizeAdmin";
 const router = Router();
 router.get("/", authenticateUser, authorizeAdmin, userController.getAllUsers);
 router.get("/:id", authenticateUser, userController.getUserById);
-router.patch("/update/:id", userValidator.updateValidator, userController.updateUser);
+router.patch("/update/:id", authenticateUser, userValidator.updateValidator, userController.updateUser);
 
 export default router;

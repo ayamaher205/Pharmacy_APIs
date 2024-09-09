@@ -36,6 +36,12 @@
                 "*.ts"
             ],
             "rules": {}
+        },
+        {
+            "files": ["tests/**/*"],
+            "env": {
+              "jest": true
+            }
         }
     ],
     "parserOptions": {

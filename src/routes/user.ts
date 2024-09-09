@@ -8,5 +8,5 @@ const router = Router();
 router.get("/", authenticateUser, authorizeAdmin, userController.getAllUsers);
 router.get("/:id", authenticateUser, userController.getUserById);
 router.patch("/update/:id", authenticateUser, userValidator.updateValidator, userController.updateUser);
-
+router.delete("/:id", authenticateUser, userController.deleteUser);
 export default router;

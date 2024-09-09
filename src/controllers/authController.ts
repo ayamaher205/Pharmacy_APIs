@@ -7,6 +7,7 @@ import DataBaseErr from "../errors/databaseError";
 import BadRequest from "../errors/badRequestError";
 import Tokens from "../utils/auth";
 import NotFoundErr from "../errors/notFoundError";
+import exclude from "../utils/excludePassword";
 
 const register = async (req: Request, res: Response, next: NextFunction) => {
     const password = await bcrypt.hash(req.body.password, 10);
@@ -21,7 +22,8 @@ const register = async (req: Request, res: Response, next: NextFunction) => {
     if (!user) {
         return next(new DataBaseErr("failed to create user!"));
     }
-    return res.status(200).json({ data: user });
+    const userWithoutPassword = exclude(user, ["password"]);
+    return res.status(200).json({ data: userWithoutPassword });
 };
 
 const login = async (req: Request, res: Response, next: NextFunction) => {

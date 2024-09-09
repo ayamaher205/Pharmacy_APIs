@@ -34,7 +34,7 @@ const deleteUser = async (req: Request, res: Response, next: NextFunction) => {
     if (err) {
         return next(new DataBaseErr(`DataBase Error: ${err.message}`));
     }
-    return res.status(200).json({ data: user });
+    return res.status(201).json({ data: user });
 };
 const updateUser = async (req: Request, res: Response, next: NextFunction) => {
     req.body.password = await bcrypt.hash(req.body.password, 10);
